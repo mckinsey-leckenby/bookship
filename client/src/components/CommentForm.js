@@ -9,6 +9,7 @@ function CommentForm({ onAddComment, user }) {
         user_id: user.id,
         book_id: id
     })
+
     function handleChange(e) {
         setCommentFormData({
             ...commentFormData, 
@@ -18,7 +19,7 @@ function CommentForm({ onAddComment, user }) {
 
     function handleSubmit(e) {
         e.preventDefault()
-
+        debugger
         const newComment = {
             ...commentFormData}
 
@@ -30,10 +31,10 @@ function CommentForm({ onAddComment, user }) {
             body: JSON.stringify(newComment),
         })
             .then((r) => r.json())
-            .then((newComment) => {
+            .then((r) => {
                 setCommentFormData({
                     id: "",
-                    comments: "",
+                    comment: "",
                 })
                 onAddComment(newComment)
                 

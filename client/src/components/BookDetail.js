@@ -6,7 +6,7 @@ import CommentForm from "./CommentForm";
 function BookDetail({ user }) {
     const { id } = useParams()
     const [showBook, setShowBook] = useState([]);
-    const [comments, setComments] = useState([]);
+    // const [comments, setComments] = useState([]);
    
    
    
@@ -16,7 +16,6 @@ function BookDetail({ user }) {
             .then((r) => r.json())
             .then(data => {
                 setShowBook(() => data)
-                setComments(() => data.comments)
                
             })
     }, []);
@@ -35,7 +34,6 @@ function BookDetail({ user }) {
     }
     return (
         <div>
-            {/* <h2>HELLO {id} </h2> */}
 
             {showBook ?
                 <div>
@@ -46,7 +44,8 @@ function BookDetail({ user }) {
                         <li>Description: {showBook.description}</li>
                         <li>Page Count: {showBook.pages}</li>
                         <li>Genre: {showBook.genre}</li>
-                        <ul>Comments: {comments?.map((comment) =>
+                        <h2>Comments:</h2>
+                        <ul> {showBook.comments?.map((comment) =>
                             <li key={comment.id}>
                                 {comment.comment}</li>
                         )}
