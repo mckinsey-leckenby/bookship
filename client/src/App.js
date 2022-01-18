@@ -1,26 +1,31 @@
 import React, { useState, useEffect } from "react";
 
-import Home from "./components/Home"
 import Login from "./components/Login";
-
+import Header from "./components/Header";
 import NavBar from "./components/NavBar";
+import BookForm from "./components/BookForm";
+import BookDetail from "./components/BookDetail";
+
 
 import {
-    BrowserRouter as Router,
-    Routes,
-    Route,
-    Link
-  } from "react-router-dom";
-  
-function App () {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
+import BookContainer from "./components/BookContainer";
+
+function App() {
   const [user, setUser] = useState(null)
+  
 
 
   useEffect(() => {
     // auto-login
-    fetch("api/me").then((r) => {
+    fetch("http://localhost:4000/api/me").then((r) => {
       if (r.ok) {
         r.json().then((user) => setUser(user))
+        console.log(user)
       }
     })
   }, []);
@@ -29,33 +34,32 @@ function App () {
 
   return (
     <>
-        <NavBar user={user} setUser={setUser} />
-        <main>
-            {user ? (
-             <Routes>
-                    <Route path="/" element={<Home user={user}/>}>
-                       
-                    </Route>
-                
-                    </Routes>
-            ) : (
-              <Routes>
-                    {/* <Route path="/signup" element={<Signup setUser={setUser} />}>
-            
-            </Route> */}
-            <Route path="/login" element={<Login setUser={setUser} />}>
-              
-            </Route>
-            <Route path="/" element={ <Home />}>
-             
-            </Route>
-                </Routes>
+      <NavBar user={user} setUser={setUser} />
+      <Header />
+      <main>
+        <Routes>
+          {/* <Route exact path="/" element={<BookContainer user={user} />}>
 
-            )}
+          </Route> */}
 
-        </main>
+          <Route path="/books" element={<BookContainer  user={user}/>}>
+          </Route>
+          <Route path="/books/:id" element={<BookDetail  user={user}/>}>
+
+          </Route>
+          <Route path="/login" element={<Login user={user} />}>
+
+          </Route>
+       
+          <Route path="/new" element={<BookForm user={user}/>}>
+
+          </Route>
+        </Routes>
+
+
+      </main>
     </>
-  
+
   );
 }
 

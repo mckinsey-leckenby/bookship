@@ -3,14 +3,14 @@ import React, { useState } from "react";
 function LoginForm({ onLogin }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
-    const [error, setError] = useState();
+    const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
+  
     function handleSubmit(e) {
         e.preventDefault();
         setIsLoading(true);
-        fetch("api/login", {
+        fetch("http://localhost:4000/api/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -19,11 +19,11 @@ function LoginForm({ onLogin }) {
         }).then((r) => {
             setIsLoading(false);
             if(r.ok) {
-                r.json().then((user) => onLogin(user))
+                r.json().then((user) => onLogin(user));
             } else {
-                r.json().then((err) => setError(err.error));
+                r.json().then((err) => setErrors(err.errors));
             }
-        })
+        });
     }
 
     return (
@@ -33,7 +33,7 @@ function LoginForm({ onLogin }) {
                 <input 
                     type="text"
                     id="email"
-                    autoComplete="off"
+                    autoComplete=""
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="email here"
@@ -41,8 +41,9 @@ function LoginForm({ onLogin }) {
                 />
                 <br />
                 <input
-                    type="text"
+                    type="password"
                     id="password"
+                    autoComplete="current-password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="password here"
@@ -53,11 +54,11 @@ function LoginForm({ onLogin }) {
                   <button variant="fill" color="primary" type="submit">
           {isLoading ? "Loading..." : "Login"}
         </button>
-        <>
-        {/* {error.map((err) => (
-          < key={err}>{err}</>
-        ))} */}
-        </>
+   
+        {errors.map((err) => (
+          <p key={err}>{err}</p>
+        ))}
+      
             </form>
         </div>
     )

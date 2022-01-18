@@ -1,28 +1,34 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-function NavBar({ user, setUser }) {
+function NavBar({ setUser }) {
+const navigate = useNavigate();
 
     function handleLogoutClick() {
-        fetch("api/logout", {method: "DELETE"}).then((r) => {
+        fetch("http://localhost:4000/api/logout", {method: "DELETE"}).then((r) => {
             if (r.ok) {
                 setUser(null);
+                navigate("/")
             }
         });
     }
+  
 
     return(
         <header>
      
       <div>
-        {user ? (
-          <button onClick={handleLogoutClick}>Logout</button>
-        ) : (
+    
           <>
-            <Link to="/signup">Signup</Link>
-             <Link to="/login">Login</Link>
+           <div>
+          <button onClick={handleLogoutClick}>Logout</button>
+          
+          <Link to="/books"><button>Home</button></Link>
+         
+          </div>
+      
           </>
-        )}
+         {/* )}  */}
       </div>
     </header>
 

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import LoginForm from "./LoginForm";
 import Signup from "./Signup";
 import { Link } from "react-router-dom"
+
 function Login({ onLogin }) {
     const [showLogin, setShowLogin] = useState(true)
 
@@ -14,7 +15,7 @@ function Login({ onLogin }) {
             <LoginForm onLogin={onLogin} />
             <p>
             Don't have an account? &nbsp;
-            <button as={Link} to="/books" onClick={() => setShowLogin(false)}>
+            <button onClick={() => setShowLogin(false)}>
               Sign Up
             </button>
             </p>
@@ -24,7 +25,7 @@ function Login({ onLogin }) {
             <Signup onLogin={onLogin} />
             <p>
               Already have an account? 
-              <button as={Link} to="/books" onClick={() => setShowLogin(true)}>
+              <button onClick={() => setShowLogin(true)}>
               Log In
             </button>
             </p>

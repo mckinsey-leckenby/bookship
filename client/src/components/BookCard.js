@@ -1,11 +1,11 @@
 import React from "react";
 // import DisplayBookComment from "./DisplayBookComment";
-
+import { Link } from "react-router-dom"
 function BookCard({ book, onDeleteBook, onUpdateBook }) {
     const { id, img_url, title, author, description, pages, genre, likes  } = book
 
     function handleDeleteClick() {
-        fetch(`api/books/${id}`, {
+        fetch(`http://localhost:4000/api/books/${id}`, {
             method: "DELETE", 
         }).then((r) => {
             if (r.ok) {
@@ -18,7 +18,7 @@ function BookCard({ book, onDeleteBook, onUpdateBook }) {
     const updateBookStatus = {
       likes: book.likes + 1,
     };
-    fetch(`api/books/${id}`, {
+    fetch(`http://localhost:4000/api/books/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -34,7 +34,7 @@ function BookCard({ book, onDeleteBook, onUpdateBook }) {
           
             <h2>{title}</h2>
             <img      src={img_url} alt={title} className="book-avatar" />
-            
+            <Link to={`/books/${book.id}`}>View Book</Link>
             <p>{likes} Currently Reading </p>
             <button className="like-btn" onClick={handleLikeClick}>
         Reading
@@ -42,7 +42,7 @@ function BookCard({ book, onDeleteBook, onUpdateBook }) {
             <button className="del-btn" onClick={handleDeleteClick}>
         Remove from Reading List 
       </button>
-      
+   
         </div>
     )
 }
