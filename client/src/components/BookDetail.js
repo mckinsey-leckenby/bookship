@@ -63,7 +63,7 @@ function BookDetail({ user }) {
                     {showBook.comments?.map((comment) =>
                         <div key={comment.id} style={{border:"1px solid black"}}>
                             
-                                {/* Comment By: {comment.user?.first_name} */}
+                                Comment By: {comment.user?.first_name}
                                 <br/>
                                 Comment: {comment.comment} &nbsp;
                                 {/* <br/> */}
