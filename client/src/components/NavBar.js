@@ -5,7 +5,7 @@ function NavBar({ setUser }) {
 const navigate = useNavigate();
 
     function handleLogoutClick() {
-        fetch("http://localhost:4000/api/logout", {method: "DELETE"}).then((r) => {
+        fetch("api/logout", {method: "DELETE"}).then((r) => {
             if (r.ok) {
                 setUser(null);
                 navigate("/books")

@@ -24,7 +24,7 @@ function CommentForm({ onAddComment, user }) {
         const newComment = {
             ...commentFormData}
 
-        fetch(`http://localhost:4000/api/comments`, {
+        fetch(`api/comments`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

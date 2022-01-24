@@ -19,7 +19,7 @@ function BookForm( { onAddBook }) {
         const newBook = {
             ...formData }
 
-        fetch("http://localhost:4000/api/books", {
+        fetch("api/books", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

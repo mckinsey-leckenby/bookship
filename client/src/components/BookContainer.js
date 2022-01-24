@@ -9,7 +9,7 @@ function BookContainer() {
 
 
     useEffect(() => {
-      fetch("http://localhost:4000/api/books/")
+      fetch("api/books/")
         .then((r) => r.json())
         .then(setBooks);
     }, []);

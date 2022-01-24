@@ -11,7 +11,7 @@ function BookDetail({ user }) {
 
 
     useEffect(() => {
-        fetch(`http://localhost:4000/api/books/${id}`)
+        fetch(`api/books/${id}`)
             .then((r) => r.json())
             .then(data => {
                 setShowBook(() => data)
@@ -20,7 +20,7 @@ function BookDetail({ user }) {
 
 
     function handleDeleteClick(commentId) {
-        fetch(`http://localhost:4000/api/comments/${commentId}`, {
+        fetch(`api/comments/${commentId}`, {
             method: "DELETE",
         }).then((r) => {
             if (r.ok) {

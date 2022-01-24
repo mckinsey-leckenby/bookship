@@ -5,7 +5,7 @@ function BookCard({ book, onDeleteBook, onUpdateBook }) {
     const { id, img_url, title, likes  } = book
 
     function handleDeleteClick() {
-        fetch(`http://localhost:4000/api/books/${id}`, {
+        fetch(`api/books/${id}`, {
             method: "DELETE", 
         }).then((r) => {
             if (r.ok) {
@@ -20,7 +20,7 @@ function BookCard({ book, onDeleteBook, onUpdateBook }) {
     };
 
 
-    fetch(`http://localhost:4000/api/books/${id}`, {
+    fetch(`api/books/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
