@@ -16,10 +16,11 @@ function CommentForm({ onAddComment, user }) {
             [e.target.name]: e.target.value,
         })
     }
+    
 
     function handleSubmit(e) {
         e.preventDefault()
-        debugger
+
         const newComment = {
             ...commentFormData}
 
@@ -31,15 +32,18 @@ function CommentForm({ onAddComment, user }) {
             body: JSON.stringify(newComment),
         })
             .then((r) => r.json())
-            .then((r) => {
+            .then((responseComment) => {
+                console.log(responseComment)
                 setCommentFormData({
-                    id: "",
                     comment: "",
+                    user_id: user.id,
+                    book_id: id
                 })
-                onAddComment(newComment)
+                onAddComment(responseComment)
                 
             })
     }
+   
 
     return (
 

@@ -8,7 +8,7 @@ const navigate = useNavigate();
         fetch("http://localhost:4000/api/logout", {method: "DELETE"}).then((r) => {
             if (r.ok) {
                 setUser(null);
-                navigate("/")
+                navigate("/books")
             }
         });
     }

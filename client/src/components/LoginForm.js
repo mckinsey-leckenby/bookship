@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {useNavigate} from "react-router-dom"
 
 function LoginForm({ onLogin }) {
     const [email, setEmail] = useState("");
@@ -6,7 +7,10 @@ function LoginForm({ onLogin }) {
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
+
   
+const navigate = useNavigate(); 
+
     function handleSubmit(e) {
         e.preventDefault();
         setIsLoading(true);
@@ -19,7 +23,7 @@ function LoginForm({ onLogin }) {
         }).then((r) => {
             setIsLoading(false);
             if(r.ok) {
-                r.json().then((user) => onLogin(user));
+                r.json().then((user) => onLogin(user)).then(navigate("/books"))
             } else {
                 r.json().then((err) => setErrors(err.errors));
             }

@@ -6,58 +6,71 @@ import CommentForm from "./CommentForm";
 function BookDetail({ user }) {
     const { id } = useParams()
     const [showBook, setShowBook] = useState([]);
-    // const [comments, setComments] = useState([]);
-   
-   
-   
+
+
+
 
     useEffect(() => {
         fetch(`http://localhost:4000/api/books/${id}`)
             .then((r) => r.json())
             .then(data => {
                 setShowBook(() => data)
-               
             })
     }, []);
 
 
+    function handleDeleteClick(commentId) {
+        fetch(`http://localhost:4000/api/comments/${commentId}`, {
+            method: "DELETE",
+        }).then((r) => {
+            if (r.ok) {
+                console.log(showBook)
+                const newBook = { ...showBook, comments: showBook.comments.filter((comment) => comment.id !== commentId) }
+                setShowBook(newBook)
+            }
+        })
+    }
 
-    // function handleAddComment(newComment) {
-    //     setShowBook((originalBook) => [originalBook, newComment]);
-    //   }
-    
-    function handleAddComment(newComment){
+
+
+    function handleAddComment(newComment) {
         setShowBook({
             ...showBook,
             comments: [...showBook.comments, newComment]
         })
     }
+
+
+
     return (
         <div>
 
             {showBook ?
                 <div>
                     {/* <p>{JSON.stringify(showBook)}</p>  */}
+
                     <img src={showBook.img_url} alt={showBook.title} />
+                    <h2>Details:</h2>
                     <ul>
                         <li>Author: {showBook.author}</li>
                         <li>Description: {showBook.description}</li>
                         <li>Page Count: {showBook.pages}</li>
                         <li>Genre: {showBook.genre}</li>
-                        <h2>Comments:</h2>
-                        <ul> {showBook.comments?.map((comment) =>
-                            <li key={comment.id}>
-                                {comment.comment}</li>
-                        )}
-                        </ul>
-                        <li> 
-                           <CommentForm onAddComment={handleAddComment} user={user} />
-                          
-                        </li>
-                        
                     </ul>
 
+                    <h2>Comments:</h2>
 
+                    {showBook.comments?.map((comment) =>
+                        <div key={comment.id} style={{border:"1px solid black"}}>
+                            
+                                {/* Comment By: {comment.user?.first_name} */}
+                                <br/>
+                                Comment: {comment.comment} &nbsp;
+                                {/* <br/> */}
+                                <button onClick={() => handleDeleteClick(comment.id)}>delete</button>
+                        </div>
+                    )}
+                        <CommentForm onAddComment={handleAddComment} user={user} />
                 </div>
                 : null}
 
