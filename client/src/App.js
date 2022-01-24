@@ -21,7 +21,7 @@ function App() {
 
   useEffect(() => {
     // auto-login
-    fetch("api/me").then((r) => {
+    fetch("https://salty-fortress-94451.herokuapp.com/api/me").then((r) => {
       if (r.ok) {
         r.json().then((user) => setUser(user))
         console.log(user)

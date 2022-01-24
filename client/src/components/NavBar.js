@@ -5,7 +5,7 @@ function NavBar({ setUser }) {
 const navigate = useNavigate();
 
     function handleLogoutClick() {
-        fetch("api/logout", {method: "DELETE"}).then((r) => {
+        fetch("https://salty-fortress-94451.herokuapp.com/api/logout", {method: "DELETE"}).then((r) => {
             if (r.ok) {
                 setUser(null);
                 navigate("/books")

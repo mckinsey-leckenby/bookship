@@ -9,7 +9,7 @@ function BookContainer() {
 
 
     useEffect(() => {
-      fetch("api/books/")
+      fetch("https://salty-fortress-94451.herokuapp.com/api/books/")
         .then((r) => r.json())
         .then(setBooks);
     }, []);
