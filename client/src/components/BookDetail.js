@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom"
 import CommentForm from "./CommentForm";
 import Button from '@mui/material/Button';
 import { ButtonGroup } from "@mui/material";
-import { Grid, Typography, ButtonBase, Paper } from "@mui/material";
+import { Grid } from "@mui/material";
 
 
 
@@ -15,7 +15,7 @@ function BookDetail({ user }) {
 
 
     useEffect(() => {
-        fetch(`https://salty-fortress-94451.herokuapp.com/api/books/${id}`)
+        fetch(`https://salty-fortress-94451.herokuapp.com /api/books/${id}`)
             .then((r) => r.json())
             .then(data => {
                 setShowBook(() => data)
@@ -24,7 +24,7 @@ function BookDetail({ user }) {
 
 
     function handleDeleteClick(commentId) {
-        fetch(`https://salty-fortress-94451.herokuapp.com/api/comments/${commentId}`, {
+        fetch(`https://salty-fortress-94451.herokuapp.com /api/comments/${commentId}`, {
             method: "DELETE",
         }).then((r) => {
             if (r.ok) {
