@@ -17,7 +17,7 @@ const navigate = useNavigate();
     function handleSubmit(e) {
         e.preventDefault();
         setIsLoading(true);
-        fetch("http://localhost:4000/api/login", {
+        fetch("https://salty-fortress-94451.herokuapp.com/api/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

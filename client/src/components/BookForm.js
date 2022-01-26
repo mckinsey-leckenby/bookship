@@ -21,7 +21,7 @@ function BookForm( { onAddBook }) {
         const newBook = {
             ...formData }
 
-        fetch("http://localhost:4000/api/books", {
+        fetch("https://salty-fortress-94451.herokuapp.com/api/books", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

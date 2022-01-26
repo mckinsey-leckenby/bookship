@@ -26,7 +26,7 @@ function CommentForm({ onAddComment, user }) {
         const newComment = {
             ...commentFormData}
 
-        fetch(`http://localhost:4000/api/comments`, {
+        fetch(`https://salty-fortress-94451.herokuapp.com/api/comments`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
