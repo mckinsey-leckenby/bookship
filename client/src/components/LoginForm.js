@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import {useNavigate} from "react-router-dom"
+import Button from '@mui/material/Button';
+import { ButtonGroup } from '@mui/material';
+
 
 function LoginForm({ onLogin }) {
     const [email, setEmail] = useState("");
@@ -14,7 +17,7 @@ const navigate = useNavigate();
     function handleSubmit(e) {
         e.preventDefault();
         setIsLoading(true);
-        fetch("https://salty-fortress-94451.herokuapp.com/api/login", {
+        fetch("http://localhost:4000/api/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -54,10 +57,11 @@ const navigate = useNavigate();
                     className="input-text"
                 />
                 <br />
-            
-                  <button variant="fill" color="primary" type="submit">
+                <ButtonGroup variant='contained' color='secondary'>
+                  <Button variant="fill" color="primary" type="submit">
           {isLoading ? "Loading..." : "Login"}
-        </button>
+        </Button>
+       </ButtonGroup>
    
         {errors.map((err) => (
           <p key={err}>{err}</p>

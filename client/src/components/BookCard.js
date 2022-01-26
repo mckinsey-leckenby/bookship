@@ -1,11 +1,12 @@
 import React from "react";
-// import DisplayBookComment from "./DisplayBookComment";
+import Button from '@mui/material/Button';
+import { ButtonGroup } from '@mui/material';
 import { Link } from "react-router-dom"
 function BookCard({ book, onDeleteBook, onUpdateBook }) {
     const { id, img_url, title, likes  } = book
 
     function handleDeleteClick() {
-        fetch(`https://salty-fortress-94451.herokuapp.com/api/books/${id}`, {
+        fetch(`http://localhost:4000/api/books/${id}`, {
             method: "DELETE", 
         }).then((r) => {
             if (r.ok) {
@@ -20,7 +21,7 @@ function BookCard({ book, onDeleteBook, onUpdateBook }) {
     };
 
 
-    fetch(`https://salty-fortress-94451.herokuapp.com/api/books/${id}`, {
+    fetch(`http://localhost:4000/api/books/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -32,17 +33,20 @@ function BookCard({ book, onDeleteBook, onUpdateBook }) {
     }
   
     return (
-        <div className="card">
+        <div >
           
-           <Link to={`/books/${book.id}`}><img src={img_url} alt={title} className="book-avatar" /></Link>
+           <Link to={`/books/${book.id}`}>
+              <img  src={img_url} alt={title}  style={{width: "270px", display: "flex"}}  />  
+                </Link>
             <p>{likes} currently reading
-            <button className="like-btn" onClick={handleLikeClick}>
+            <ButtonGroup variant='contained' color='secondary'>
+            <Button variant="fill" color="primary" type="submit"  onClick={handleLikeClick}>
         Reading
-      </button> </p>
-     
-            <button className="del-btn" onClick={handleDeleteClick}>
+      </Button> </ButtonGroup></p>
+      <ButtonGroup variant='contained' color='secondary'>
+            <Button variant="fill" color="primary" type="submit" className="del-btn" onClick={handleDeleteClick}>
         Remove from Reading List 
-      </button>
+      </Button></ButtonGroup>
    
         </div>
     )

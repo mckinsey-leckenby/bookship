@@ -1,11 +1,12 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup'
 function NavBar({ setUser }) {
 const navigate = useNavigate();
 
     function handleLogoutClick() {
-        fetch("https://salty-fortress-94451.herokuapp.com/api/logout", {method: "DELETE"}).then((r) => {
+        fetch("http://localhost:4000/api/logout", {method: "DELETE"}).then((r) => {
             if (r.ok) {
                 setUser(null);
                 navigate("/books")
@@ -15,22 +16,22 @@ const navigate = useNavigate();
   
 
     return(
-        <header>
+       
      
-      <div>
+      <div className="container">
     
-          <>
-           <div>
-          <button onClick={handleLogoutClick}>Logout</button>
           
-          <Link to="/books"><button>Home</button></Link>
-         
-          </div>
+           
+           <ButtonGroup variant='contained' >
+          <Button variant="fill" color="primary" type="submit" onClick={handleLogoutClick}>Logout</Button></ButtonGroup>
+          
+          <Link style={{textDecoration:"none", color: "black"}} to="/books">
+          <ButtonGroup variant='contained'><Button variant="fill" color="primary" type="submit"  >Home</Button></ButtonGroup>
+           </Link>
       
-          </>
-         {/* )}  */}
+        
       </div>
-    </header>
+    
 
     )
 }

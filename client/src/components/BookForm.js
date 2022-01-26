@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Button from '@mui/material/Button';
+import { ButtonGroup } from "@mui/material";
 
 function BookForm( { onAddBook }) {
     const [formData, setFormData] = useState({
@@ -19,7 +21,7 @@ function BookForm( { onAddBook }) {
         const newBook = {
             ...formData }
 
-        fetch("https://salty-fortress-94451.herokuapp.com/api/books", {
+        fetch("http://localhost:4000/api/books", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -58,12 +60,14 @@ function BookForm( { onAddBook }) {
                     className="input-text"
                 />
                 <br />
-                <input 
+                <ButtonGroup variant='contained' color='secondary'>
+                <Button
+                variant="fill" color="primary" type="submit"
                     type="submit"
                     name="submit"
                     value="Add New Book"
                     className="submit"
-                />
+                >Add New Book</Button></ButtonGroup>
             </form>
         </div>
     )

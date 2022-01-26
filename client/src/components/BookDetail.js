@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom"
 import CommentForm from "./CommentForm";
+import Button from '@mui/material/Button';
+import { ButtonGroup } from "@mui/material";
 
 
 function BookDetail({ user }) {
@@ -11,7 +13,7 @@ function BookDetail({ user }) {
 
 
     useEffect(() => {
-        fetch(`https://salty-fortress-94451.herokuapp.com/api/books/${id}`)
+        fetch(`http://localhost:4000/api/books/${id}`)
             .then((r) => r.json())
             .then(data => {
                 setShowBook(() => data)
@@ -20,7 +22,7 @@ function BookDetail({ user }) {
 
 
     function handleDeleteClick(commentId) {
-        fetch(`https://salty-fortress-94451.herokuapp.com/api/comments/${commentId}`, {
+        fetch(`http://localhost:4000/api/comments/${commentId}`, {
             method: "DELETE",
         }).then((r) => {
             if (r.ok) {
@@ -67,7 +69,8 @@ function BookDetail({ user }) {
                                 <br/>
                                 Comment: {comment.comment} &nbsp;
                                 {/* <br/> */}
-                                <button onClick={() => handleDeleteClick(comment.id)}>delete</button>
+                                <ButtonGroup variant='contained' color='secondary'>
+                                <Button variant="fill" color="primary" type="submit" onClick={() => handleDeleteClick(comment.id)}>delete</Button></ButtonGroup>
                         </div>
                     )}
                         <CommentForm onAddComment={handleAddComment} user={user} />

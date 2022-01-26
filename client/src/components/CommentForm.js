@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom"
+import Button from '@mui/material/Button';
+import { ButtonGroup } from "@mui/material";
 
 function CommentForm({ onAddComment, user }) {
     const { id } = useParams()
@@ -24,7 +26,7 @@ function CommentForm({ onAddComment, user }) {
         const newComment = {
             ...commentFormData}
 
-        fetch(`https://salty-fortress-94451.herokuapp.com/api/comments`, {
+        fetch(`http://localhost:4000/api/comments`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -58,12 +60,13 @@ function CommentForm({ onAddComment, user }) {
                     placeholder="Add Comment here..."
                     className="input-text"
                 />
-                    <input 
+                    <ButtonGroup variant='contained' color='secondary'> <Button
+                    variant="fill" color="primary" type="submit"
                     type="submit"
                     name="submit"
                     value="Add New Comment"
-                    className="submit"
-                />
+                    className="submit" >comment</Button></ButtonGroup>
+            
                    </form>
         </div>
     )

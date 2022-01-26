@@ -1,23 +1,49 @@
 import React, { useState } from "react";
+import { ButtonGroup } from "@mui/material";
+import Button from '@mui/material/Button';
 import LoginForm from "./LoginForm";
 import Signup from "./Signup";
-import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
+import bookshiplogo from './bookship-logo.png';
+
+
 
 function Login({ onLogin }) {
     const [showLogin, setShowLogin] = useState(true)
 
+// function Buttons() {
+//   return(
+//     <Button onClick={() => setShowLogin(false)}>
+//     Sign Up
+//   </Button>
+//   )
+// }
    
       return (
         <div>
-          <h2>Book Club</h2>
+           <div id="book-header">
+
+<img
+  src={bookshiplogo}
+   alt="book header" 
+
+/>
+
+
+</div>
           {showLogin ? (
             <>
             <LoginForm onLogin={onLogin} />
             <p>
             Don't have an account? &nbsp;
-            <button onClick={() => setShowLogin(false)}>
+            {/* {Buttons} */}
+            <ButtonGroup variant='contained' color='secondary'>
+            <Button variant="fill" color="primary" type="submit" onClick={() => setShowLogin(false)}>
               Sign Up
-            </button>
+            </Button></ButtonGroup>
+            {/* <button onClick={() => setShowLogin(false)}>
+              Sign Up
+            </button> */}
             </p>
             </>
           ) : (
@@ -25,9 +51,11 @@ function Login({ onLogin }) {
             <Signup onLogin={onLogin} />
             <p>
               Already have an account? 
-              <button onClick={() => setShowLogin(true)}>
+              <ButtonGroup variant='contained' color='secondary'>
+              <Button variant="fill" color="primary" type="submit" onClick={() => setShowLogin(true)}>
               Log In
-            </button>
+            </Button>
+           </ButtonGroup>
             </p>
             </>
           )}

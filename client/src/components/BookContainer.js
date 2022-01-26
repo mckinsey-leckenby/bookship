@@ -1,7 +1,13 @@
 import React, { useState, useEffect} from "react";
 import BookCard from "./BookCard";
 import BookForm from "./BookForm";
-import { Link } from "react-router-dom"
+import Button from '@mui/material/Button';
+import { ButtonGroup } from "@mui/material";
+import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+
 
 function BookContainer() {
     const [showForm, setShowForm] = useState(false);
@@ -9,21 +15,12 @@ function BookContainer() {
 
 
     useEffect(() => {
-      fetch("https://salty-fortress-94451.herokuapp.com/api/books/")
+      fetch("http://localhost:4000/api/books/")
         .then((r) => r.json())
         .then(setBooks);
     }, []);
     
-    const bookCards = books.map((book) => (
-        <BookCard
-                 key={book.id}
-                 book={book}
-                 onDeleteBook={handleDeleteBook}
-                 onUpdateBook={handleUpdateBook}
-           
-             />
-         ))
-     
+   
     function handleClick() {
         setShowForm((showForm) => !showForm);
       }
@@ -47,19 +44,42 @@ function BookContainer() {
 
 
 
-   
+
 
     return (
         <div>
-        {showForm ? <BookForm onAddBook={handleAddBook} /> : null}
-        <div className="buttonContainer">
-         <button onClick={handleClick}>Add a Book</button>
-          </div>
+          {showForm ? <BookForm onAddBook={handleAddBook} /> : null}
+          <ButtonGroup variant='contained' color='secondary'>
+         <Button variant="fill" color="primary" type="submit" onClick={handleClick}>Add a Book</Button></ButtonGroup>
+      
+          <Container sx={{ py: 8 }} maxWidth="md">
+          <Grid container spacing={4}>
+              {books.map((book) => (
+        
+          <Grid item  key={book} xs={12} sm={6} md={4}>
+            <Card
+                  sx={{ height: '100%', display: 'flex' }}
+                >
+                  <BookCard
+                 key={book.id}
+                 book={book}
+                 onDeleteBook={handleDeleteBook}
+                 onUpdateBook={handleUpdateBook}
+           
+             />
+                  <CardContent sx={{ flexGrow: 1 }}></CardContent>
+                  </Card>
+        </Grid>
+            ))}
+        </Grid>
           
-        <div id="book-collection">
-            {bookCards}
-  
-        </div>
+     
+        </Container>
+        
+        
+          
+        
+    
         </div>
     )
 }

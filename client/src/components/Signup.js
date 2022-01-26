@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import {useNavigate} from "react-router-dom"
+import Button from '@mui/material/Button';
+import { ButtonGroup } from "@mui/material";
 
 function Signup({ onLogin }) {
   const [firstName, setFirstName] = useState("");
@@ -17,7 +19,7 @@ function Signup({ onLogin }) {
     e.preventDefault();
     setErrors([]);
     setIsLoading(true);
-    fetch("https://salty-fortress-94451.herokuapp.com/api/signup", {
+    fetch("http://localhost:4000/api/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -84,7 +86,8 @@ function Signup({ onLogin }) {
           onChange={(e) => setPasswordConfirmation(e.target.value)}
           autoComplete="current-password"
         />
-        <button type="submit">{isLoading ? "Loading..." : "Sign Up"}</button>
+        <ButtonGroup variant='contained' color='secondary'>
+        <Button variant="fill" color="primary" type="submit">{isLoading ? "Loading..." : "Sign Up"}</Button></ButtonGroup>
         {errors.map((err) => (
           <p key={err}>{err}</p>
         ))}
