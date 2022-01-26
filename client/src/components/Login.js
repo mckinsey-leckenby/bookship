@@ -38,7 +38,7 @@ function Login({ onLogin }) {
             Don't have an account? &nbsp;
             {/* {Buttons} */}
             <ButtonGroup variant='contained' color='secondary'>
-            <Button variant="fill" color="primary" type="submit" onClick={() => setShowLogin(false)}>
+            <Button variant="fill" color="primary" type="submit" style={{margin: "0 auto"}} onClick={() => setShowLogin(false)}>
               Sign Up
             </Button></ButtonGroup>
             {/* <button onClick={() => setShowLogin(false)}>
@@ -52,7 +52,8 @@ function Login({ onLogin }) {
             <p>
               Already have an account? 
               <ButtonGroup variant='contained' color='secondary'>
-              <Button variant="fill" color="primary" type="submit" onClick={() => setShowLogin(true)}>
+              <Button variant="fill" color="primary" type="submit" sx={{display: "flex"}}
+               onClick={() => setShowLogin(true)}>
               Log In
             </Button>
            </ButtonGroup>

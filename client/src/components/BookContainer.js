@@ -49,8 +49,8 @@ function BookContainer() {
     return (
         <div>
           {showForm ? <BookForm onAddBook={handleAddBook} /> : null}
-          <ButtonGroup variant='contained' color='secondary'>
-         <Button variant="fill" color="primary" type="submit" onClick={handleClick}>Add a Book</Button></ButtonGroup>
+          <ButtonGroup variant='contained' color='secondary' style={{textAlign: "center"}}>
+         <Button style={{textAlign: "center"}} variant="fill" color="primary" type="submit" onClick={handleClick}>Add a Book</Button></ButtonGroup>
       
           <Container sx={{ py: 8 }} maxWidth="md">
           <Grid container spacing={4}>

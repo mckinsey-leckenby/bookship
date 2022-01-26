@@ -38,13 +38,14 @@ function BookCard({ book, onDeleteBook, onUpdateBook }) {
            <Link to={`/books/${book.id}`}>
               <img  src={img_url} alt={title}  style={{width: "270px", display: "flex"}}  />  
                 </Link>
-            <p>{likes} currently reading
-            <ButtonGroup variant='contained' color='secondary'>
-            <Button variant="fill" color="primary" type="submit"  onClick={handleLikeClick}>
-        Reading
-      </Button> </ButtonGroup></p>
-      <ButtonGroup variant='contained' color='secondary'>
-            <Button variant="fill" color="primary" type="submit" className="del-btn" onClick={handleDeleteClick}>
+            <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {likes} &nbsp; currently reading</p>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <ButtonGroup variant='contained' color='secondary'>
+            <Button variant="fill" color="primary" type="submit" style={{margin: "0 auto"}} onClick={handleLikeClick}>
+           Reading
+      </Button> </ButtonGroup>
+
+    <ButtonGroup variant='contained' color='secondary'>
+    &nbsp; <Button variant="fill" color="primary" type="submit" className="del-btn" onClick={handleDeleteClick}>
         Remove from Reading List 
       </Button></ButtonGroup>
    

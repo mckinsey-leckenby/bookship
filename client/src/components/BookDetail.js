@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom"
 import CommentForm from "./CommentForm";
 import Button from '@mui/material/Button';
 import { ButtonGroup } from "@mui/material";
+import { Grid, Typography, ButtonBase, Paper } from "@mui/material";
+
 
 
 function BookDetail({ user }) {
@@ -41,39 +43,58 @@ function BookDetail({ user }) {
             comments: [...showBook.comments, newComment]
         })
     }
-
+    
+      
+        
+         
 
 
     return (
         <div>
-
+           &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
             {showBook ?
                 <div>
+                     
                     {/* <p>{JSON.stringify(showBook)}</p>  */}
-
-                    <img src={showBook.img_url} alt={showBook.title} />
-                    <h2>Details:</h2>
-                    <ul>
-                        <li>Author: {showBook.author}</li>
-                        <li>Description: {showBook.description}</li>
-                        <li>Page Count: {showBook.pages}</li>
-                        <li>Genre: {showBook.genre}</li>
+                    
+                    
+                    &nbsp; &nbsp; &nbsp; <img src={showBook.img_url} alt={showBook.title} />
+                    <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+                    <Grid item xs={6}>
+                    &nbsp; &nbsp; &nbsp;<h2 > &nbsp; &nbsp;DETAILS:</h2>
+                 <ul>
+                        <li>AUTHOR: {showBook.author}</li>
+                        &nbsp;
+                        <li>DESCRIPTION: {showBook.description}</li>
+                        &nbsp;
+                        <li>PAGE COUNT: {showBook.pages}</li>
+                        &nbsp;
+                        <li>GENRE: {showBook.genre}</li>
                     </ul>
+                   </Grid>
+                    </Grid>
+                    
+{/*                    
+                    <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+                    <Grid item xs={6}> */}
+                    
+                     <h2>&nbsp; COMMENTS:</h2>
 
-                    <h2>Comments:</h2>
-
-                    {showBook.comments?.map((comment) =>
-                        <div key={comment.id} style={{border:"1px solid black"}}>
+                      {showBook.comments?.map((comment) =>
+                        <div key={comment.id} >
                             
-                                Comment By: {comment.user?.first_name}
+                            &nbsp;  &nbsp; &nbsp; Comment By: {comment.user?.first_name}
                                 <br/>
-                                Comment: {comment.comment} &nbsp;
+                                &nbsp; &nbsp; &nbsp;   Comment: {comment.comment} &nbsp;
                                 {/* <br/> */}
-                                <ButtonGroup variant='contained' color='secondary'>
+                                <ButtonGroup  margin= 'auto' variant='contained' color='secondary'>
                                 <Button variant="fill" color="primary" type="submit" onClick={() => handleDeleteClick(comment.id)}>delete</Button></ButtonGroup>
                         </div>
+                        
                     )}
-                        <CommentForm onAddComment={handleAddComment} user={user} />
+                  
+                    
+                    &nbsp; &nbsp; &nbsp; <CommentForm onAddComment={handleAddComment} user={user} />
                 </div>
                 : null}
 
