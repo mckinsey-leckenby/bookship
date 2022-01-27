@@ -19,7 +19,7 @@ function Signup({ onLogin }) {
     e.preventDefault();
     setErrors([]);
     setIsLoading(true);
-    fetch("https://salty-fortress-94451.herokuapp.com /api/signup", {
+    fetch("https://salty-fortress-94451.herokuapp.com/api/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
