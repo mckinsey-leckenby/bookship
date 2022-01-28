@@ -63,7 +63,7 @@ You can use the following commands to run the application:
 
 - `rails s`: run the backend on [http://localhost:3000](http://localhost:3000)
 - `npm start --prefix client`: run the frontend on
-  [https://salty-fortress-94451.herokuapp.com ](https://salty-fortress-94451.herokuapp.com )
+  [https://bookship.herokuapp.com ](https://bookship.herokuapp.com )
 
 Make sure to also update this README to include documentation about
 your project. Here's a list of some [awesome readmes][] for inspiration.

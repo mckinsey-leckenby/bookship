@@ -15,7 +15,7 @@ function BookDetail({ user }) {
 
 
     useEffect(() => {
-        fetch(`https://salty-fortress-94451.herokuapp.com/api/books/${id}`)
+        fetch(`https://bookship.herokuapp.com/api/books/${id}`)
             .then((r) => r.json())
             .then(data => {
                 setShowBook(() => data)
@@ -24,7 +24,7 @@ function BookDetail({ user }) {
 
 
     function handleDeleteClick(commentId) {
-        fetch(`https://salty-fortress-94451.herokuapp.com/api/comments/${commentId}`, {
+        fetch(`https://bookship.herokuapp.com/api/comments/${commentId}`, {
             method: "DELETE",
         }).then((r) => {
             if (r.ok) {

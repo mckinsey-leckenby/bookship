@@ -17,7 +17,7 @@ const navigate = useNavigate();
     function handleSubmit(e) {
         e.preventDefault();
         setIsLoading(true);
-        fetch("https://salty-fortress-94451.herokuapp.com/api/login", {
+        fetch("https://bookship.herokuapp.com/api/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
